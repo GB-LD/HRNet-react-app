@@ -1,7 +1,8 @@
 import { useState } from "react"
 import InputField from "../molecules/InputField"
 import Select from "../atoms/Select"
-import Button from "../atoms/Button"
+// import Button from "../atoms/Button"
+import { Button } from "@material-tailwind/react";
 import AdressForm from "../organisms/AdressForm"
 
 const EmployeeForm = () => {
@@ -64,9 +65,10 @@ const EmployeeForm = () => {
             value={form.value}
             onChange={(e) => setForm({...form, departement: e.target.value})}
         />
-        <Button
+        {/* <Button
             text='Save'
-        />
+        /> */}
+        <Button>Test</Button>
     </form>
   )
 }

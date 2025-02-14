@@ -48,14 +48,14 @@ const EmployeeForm = () => {
             onChange={(date) => {setForm({...form, birthDate: date ? format(date, "yyyy-MM-dd") : ""})}}
             placeholder='Employee birth date'
         />
-        {/* <InputField
+        <CustomInputDate
             label="Start Date"
             type='date'
             id='startDate'
             value={form.startDate}
-            onChange={(e) => setForm({...form, startDate: e.target.value})}
-            placeholder='the start date'
-        /> */}
+            onChange={(date) => setForm({...form, startDate:  date ? format(date, "yyyy-MM-dd") : ""})}
+            placeholder='Employee start date'
+        />
         {/* <AdressForm
             adress={form.adress}
             setAdress={(adress) => setForm({...form, adress: adress})}

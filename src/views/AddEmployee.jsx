@@ -1,10 +1,3 @@
-import {
-  Card,
-  Input,
-  Checkbox,
-  Button,
-  Typography,
-} from "@material-tailwind/react";
 import EmployeeForm from "../components/templates/EmployeeForm"
 
 const AddEmployee = () => {

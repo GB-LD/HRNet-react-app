@@ -3,6 +3,8 @@ import { useState } from "react"
 import CustomButton from "../atoms/Button"
 // import AdressForm from "../organisms/AdressForm"
 import CustomInput from "../atoms/Input"
+import CustomInputDate from "../atoms/InputDate"
+import { format } from "date-fns";
 
 
 const EmployeeForm = () => {
@@ -29,23 +31,23 @@ const EmployeeForm = () => {
             id='firstName'
             value={form.firstName}
             onChange={(e) => setForm({...form, firstName: e.target.value})}
-            placeholder='your first name'
+            placeholder='Employee first name'
         />
         <CustomInput
             label="Last Name"
             id='lastName'
             value={form.lastName}
             onChange={(e) => setForm({...form, lastName: e.target.value})}
-            placeholder='your last name'
+            placeholder='Employee last name'
         />
-        {/* <InputField
+        <CustomInputDate
             label="Date of Birth"
             type='date'
             id='dateOfBirth'
             value={form.birthDate}
-            onChange={(e) => setForm({...form, birthDate: e.target.value})}
-            placeholder='your birth date'
-        /> */}
+            onChange={(date) => {setForm({...form, birthDate: date ? format(date, "yyyy-MM-dd") : ""})}}
+            placeholder='Employee birth date'
+        />
         {/* <InputField
             label="Start Date"
             type='date'

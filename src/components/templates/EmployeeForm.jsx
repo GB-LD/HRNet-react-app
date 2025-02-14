@@ -1,7 +1,7 @@
 import { useState } from "react"
 import CustomSelect from "../atoms/Select"
 import CustomButton from "../atoms/Button"
-// import AdressForm from "../organisms/AdressForm"
+import AdressForm from "../organisms/AdressForm"
 import CustomInput from "../atoms/Input"
 import CustomInputDate from "../atoms/InputDate"
 import { format } from "date-fns";
@@ -56,10 +56,10 @@ const EmployeeForm = () => {
             onChange={(date) => setForm({...form, startDate:  date ? format(date, "yyyy-MM-dd") : ""})}
             placeholder='Employee start date'
         />
-        {/* <AdressForm
+        <AdressForm
             adress={form.adress}
             setAdress={(adress) => setForm({...form, adress: adress})}
-        /> */}
+        />
         <CustomSelect
             label="Departement"
             options={departements}

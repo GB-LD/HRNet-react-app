@@ -1,5 +1,5 @@
 import { useState } from "react"
-// import Select from "../atoms/Select"
+import CustomSelect from "../atoms/Select"
 import CustomButton from "../atoms/Button"
 // import AdressForm from "../organisms/AdressForm"
 import CustomInput from "../atoms/Input"
@@ -60,13 +60,12 @@ const EmployeeForm = () => {
             adress={form.adress}
             setAdress={(adress) => setForm({...form, adress: adress})}
         /> */}
-
-        {/* <label>Departement</label>
-        <Select
+        <CustomSelect
+            label="Departement"
             options={departements}
             value={form.value}
-            onChange={(e) => setForm({...form, departement: e.target.value})}
-        /> */}
+            onChange={(value) => setForm({...form, departement: value})}
+        />
         <CustomButton
             text='Save'
             onClick={hanleFormSubmit}

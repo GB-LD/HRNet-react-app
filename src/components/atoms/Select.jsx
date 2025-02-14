@@ -1,13 +1,15 @@
-const Select = ({ options, value, onChange}) => {
+import { Select, Option } from "@material-tailwind/react";
+
+const CustomSelect = ({ options, value, onChange, label}) => {
   return (
-    <select value={value} onChange={onChange} className="select">
+    <Select value={value} onChange={onChange} variant="outlined" label={label}>
         {options.map(option => (
-            <option key={option} value={option}>
+            <Option key={option} value={option}>
                 {option}
-            </option>
+            </Option>
         ))}
-    </select>
+    </Select>
   )
 }
 
-export default Select
+export default CustomSelect

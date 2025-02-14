@@ -3,8 +3,8 @@ import { NavLink, Outlet } from 'react-router-dom'
 
 const Layout = () => {
   return (
-    <>
-        <header>
+    <div>
+        <header className='flex flex-row justify-between items-center p-4 bg-light-blue-900 text-white'>
             <div>HRnet</div>
             <nav>
                 <NavLink to="/">Home</NavLink> |
@@ -12,11 +12,11 @@ const Layout = () => {
                 <NavLink to="/employee-list"> Employee list</NavLink>
             </nav>
         </header>
-        <main>
+        <main className='p-4'>
             <Outlet />
         </main>
         <footer></footer>
-    </>
+    </div>
   )
 }
 

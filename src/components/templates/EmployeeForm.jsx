@@ -22,7 +22,7 @@ const EmployeeForm = () => {
     }
 
   return (
-    <form>
+    <form className="mt-8 mb-2 w-80 max-w-screen-lg sm:w-96 flex flex-col gap-6">
         <InputField
             label="First Name"
             id='firstName'

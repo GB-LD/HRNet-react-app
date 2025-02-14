@@ -1,7 +1,9 @@
-const Button = ({ text, onClick}) => {
+import { Button } from "@material-tailwind/react"
+
+const CustomButton = ({ text, onClick}) => {
   return (
-    <button onClick={onClick} className="btn">{ text }</button>
+    <Button onClick={onClick}>{ text }</Button>
   )
 }
 
-export default Button
+export default CustomButton

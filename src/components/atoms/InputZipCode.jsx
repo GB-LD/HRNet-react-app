@@ -1,7 +1,7 @@
 import React from 'react'
 import { Input } from "@material-tailwind/react";
 
-const CustomInputZipCode = ({label, placeholder, onChange}) => {
+const CustomInputZipCode = ({label, placeholder, onChange, status}) => {
   return (
     <div className="w-96">
     <Input
@@ -11,6 +11,7 @@ const CustomInputZipCode = ({label, placeholder, onChange}) => {
         inputMode="numeric"
         label={label}
         className="appearance-none [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
+        {...(status === "error" ? { error: true } : {})}
     />
     </div>
   )

@@ -1,15 +1,15 @@
 import { Input } from "@material-tailwind/react";
 
-const CustomInput = ({type = 'text', id, value, onChange, label, placeholder}) => {
+const CustomInput = ({id, value, onChange, label, placeholder, status}) => {
   return (
     <Input
-        type={type}
         id={id}
         value={value ?? ''}
         onChange={onChange}
         label={label}
         placeholder={placeholder}
         className="input"
+        {...(status === "error" ? { error: true } : {})}
     />
   )
 }

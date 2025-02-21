@@ -15,7 +15,6 @@ const employeeSlice = createSlice({
                     employee.lastName === action.payload.lastName &&
                     employee.birthDate === action.payload.birthDate
             )
-
             if (isDuplicated ) {
                 state.errorMessage = "Cet employé existe déjà !"
                 state.successMessage = null

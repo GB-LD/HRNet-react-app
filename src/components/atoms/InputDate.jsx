@@ -9,7 +9,7 @@ import { DayPicker } from "react-day-picker";
 import { format } from "date-fns";
 import "react-day-picker/style.css";
 
-const CustomInputDate = ({ onChange, label }) => {
+const CustomInputDate = ({ onChange, label, status }) => {
     const [date, setDate] = useState('');
     const handleSelect = (selectedDate) => {
         setDate(selectedDate);
@@ -25,6 +25,7 @@ const CustomInputDate = ({ onChange, label }) => {
             label={label}
             onChange={onChange}
             value={date ? format(date, "PPP") : ""}
+            {...(status === "error" ? { error: true } : {})}
           />
         </PopoverHandler>
         <PopoverContent>

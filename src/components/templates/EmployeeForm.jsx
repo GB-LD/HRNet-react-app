@@ -1,4 +1,6 @@
 import { useState } from "react"
+import { useDispatch,useSelector } from "react-redux"
+import { addEmployee } from "../../redux/features/EmployeesSlice"
 import CustomSelect from "../atoms/Select"
 import CustomButton from "../atoms/Button"
 import AdressForm from "../organisms/AdressForm"
@@ -8,6 +10,8 @@ import { format } from "date-fns";
 
 
 const EmployeeForm = () => {
+    const dispatch = useDispatch()
+
     const [form, setForm] = useState({
         firstName: '',
         lastName: '',
@@ -21,7 +25,7 @@ const EmployeeForm = () => {
 
     const hanleFormSubmit = (e) => {
         e.preventDefault()
-        console.log('form is submit', form)
+        dispatch({type: 'employee/addEmployee', payload: form})
     }
 
   return (

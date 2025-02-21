@@ -3,21 +3,38 @@ import { createSlice, nanoid } from "@reduxjs/toolkit";
 const employeeSlice = createSlice({
     name: "employee",
     initialState: {
-        employeesList: []
+        employeesList: [],
+        successMessage: null,
+        errorMessage: null
     },
     reducers: {
         addEmployee(state, action) {
-            const newEmployee = {
-                id: nanoid(),
-                ...action.payload
+            const isDuplicated = state.employeesList.some(
+                (employee) =>
+                    employee.firstName === action.payload.firstName &&
+                    employee.lastName === action.payload.lastName &&
+                    employee.birthDate === action.payload.birthDate
+            )
+
+            if (isDuplicated ) {
+                state.errorMessage = "Cet employé existe déjà !"
+                state.successMessage = null
+            } else {
+                const newEmployee = { id: nanoid(), ...action.payload}
+                state.employeesList.push(newEmployee)
+                state.successMessage = "Employé ajouté avec succès !";
+                state.errorMessage = null;
             }
-            state.employeesList.push(newEmployee);
         },
         removeEmployee(state, action) {
             state.employeesList = state.employeesList.filter(employee => employee.id !== action.payload);
+        },
+        clearMessages(state) {
+            state.successMessage = null;
+            state.errorMessage = null;
         }
     }
 });
 
-export const { addEmployee, removeEmployee } = employeeSlice.actions;
+export const { addEmployee, removeEmployee, clearMessages } = employeeSlice.actions;
 export default employeeSlice.reducer;

@@ -1,6 +1,6 @@
-import { useState } from "react"
-import { useDispatch,useSelector } from "react-redux"
-import { addEmployee } from "../../redux/features/EmployeesSlice"
+import { useState, useEffect } from "react"
+import { useDispatch, useSelector } from "react-redux"
+import { addEmployee, clearMessages } from "../../redux/features/EmployeesSlice"
 import CustomSelect from "../atoms/Select"
 import CustomButton from "../atoms/Button"
 import AdressForm from "../organisms/AdressForm"
@@ -11,6 +11,8 @@ import { format } from "date-fns";
 
 const EmployeeForm = () => {
     const dispatch = useDispatch()
+
+    const { successMessage, errorMessage } = useSelector(state => state.employee)
 
     const [form, setForm] = useState({
         firstName: '',
@@ -25,56 +27,69 @@ const EmployeeForm = () => {
 
     const hanleFormSubmit = (e) => {
         e.preventDefault()
-        dispatch({type: 'employee/addEmployee', payload: form})
+        dispatch(addEmployee(form))
     }
 
+    useEffect(() => {
+        if (successMessage || errorMessage) {
+            const timer = setTimeout(() => {
+                dispatch(clearMessages());
+            }, 3000)
+            return () => clearTimeout(timer)
+        }
+    }, [successMessage, errorMessage, dispatch])
+
   return (
-    <form className="mt-8 mb-2 w-80 max-w-screen-lg sm:w-96 flex flex-col gap-6">
-        <CustomInput
-            label="First Name"
-            id='firstName'
-            value={form.firstName}
-            onChange={(e) => setForm({...form, firstName: e.target.value})}
-            placeholder='Employee first name'
-        />
-        <CustomInput
-            label="Last Name"
-            id='lastName'
-            value={form.lastName}
-            onChange={(e) => setForm({...form, lastName: e.target.value})}
-            placeholder='Employee last name'
-        />
-        <CustomInputDate
-            label="Date of Birth"
-            type='date'
-            id='dateOfBirth'
-            value={form.birthDate}
-            onChange={(date) => {setForm({...form, birthDate: date ? format(date, "yyyy-MM-dd") : ""})}}
-            placeholder='Employee birth date'
-        />
-        <CustomInputDate
-            label="Start Date"
-            type='date'
-            id='startDate'
-            value={form.startDate}
-            onChange={(date) => setForm({...form, startDate:  date ? format(date, "yyyy-MM-dd") : ""})}
-            placeholder='Employee start date'
-        />
-        <AdressForm
-            adress={form.adress}
-            setAdress={(adress) => setForm({...form, adress: adress})}
-        />
-        <CustomSelect
-            label="Departement"
-            options={departements}
-            value={form.value}
-            onChange={(value) => setForm({...form, departement: value})}
-        />
-        <CustomButton
-            text='Save'
-            onClick={hanleFormSubmit}
-        />
-    </form>
+    <>
+        {successMessage && <p style={{ color: "green" }}>{successMessage}</p>}
+        {errorMessage && <p style={{ color: "red" }}>{errorMessage}</p>}
+        <form className="mt-8 mb-2 w-80 max-w-screen-lg sm:w-96 flex flex-col gap-6">
+            <CustomInput
+                label="First Name"
+                id='firstName'
+                value={form.firstName}
+                onChange={(e) => setForm({...form, firstName: e.target.value})}
+                placeholder='Employee first name'
+            />
+            <CustomInput
+                label="Last Name"
+                id='lastName'
+                value={form.lastName}
+                onChange={(e) => setForm({...form, lastName: e.target.value})}
+                placeholder='Employee last name'
+            />
+            <CustomInputDate
+                label="Date of Birth"
+                type='date'
+                id='dateOfBirth'
+                value={form.birthDate}
+                onChange={(date) => {setForm({...form, birthDate: date ? format(date, "yyyy-MM-dd") : ""})}}
+                placeholder='Employee birth date'
+            />
+            <CustomInputDate
+                label="Start Date"
+                type='date'
+                id='startDate'
+                value={form.startDate}
+                onChange={(date) => setForm({...form, startDate:  date ? format(date, "yyyy-MM-dd") : ""})}
+                placeholder='Employee start date'
+            />
+            <AdressForm
+                adress={form.adress}
+                setAdress={(adress) => setForm({...form, adress: adress})}
+            />
+            <CustomSelect
+                label="Departement"
+                options={departements}
+                value={form.value}
+                onChange={(value) => setForm({...form, departement: value})}
+            />
+            <CustomButton
+                text='Save'
+                onClick={hanleFormSubmit}
+            />
+        </form>
+    </>
   )
 }
 

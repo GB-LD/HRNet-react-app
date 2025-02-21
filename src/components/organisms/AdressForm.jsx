@@ -1,4 +1,5 @@
 import CustomInput from "../atoms/Input"
+import CustomInputZipCode from "../atoms/InputZipCode"
 import CustomSelect from "../atoms/Select"
 
 const AdressForm = ({adress, setAdress}) => {
@@ -26,14 +27,12 @@ const AdressForm = ({adress, setAdress}) => {
             value={adress.state}
             onChange={(value) => setAdress({...adress, state: value})}
         />
-        {/* <InputField
-            label="Zip code"
-            type='number'
-            id='zipCode'
+        <CustomInputZipCode
+            label="Zip Code"
             value={adress.zipCode}
-            onChange={(e) => setAdress({...adress, zipCode: e.target.value})}
+            onChange={(e) => setAdress({...adress, zip: e.target.value})}
             placeholder='zip code number'
-        /> */}
+        />
     </div>
   )
 }

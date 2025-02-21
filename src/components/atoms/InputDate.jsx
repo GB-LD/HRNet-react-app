@@ -6,9 +6,8 @@ import {
     PopoverContent,
 } from "@material-tailwind/react";
 import { DayPicker } from "react-day-picker";
-import "react-day-picker/style.css";
 import { format } from "date-fns";
-
+import "react-day-picker/style.css";
 
 const CustomInputDate = ({ onChange, label }) => {
     const [date, setDate] = useState('');
@@ -30,11 +29,11 @@ const CustomInputDate = ({ onChange, label }) => {
         </PopoverHandler>
         <PopoverContent>
         <DayPicker
+            captionLayout="dropdown-years"
             mode="single"
             selected={date}
             onSelect={handleSelect}
-            captionLayout="dropdown"
-        />
+          />
         </PopoverContent>
       </Popover>
     </div>

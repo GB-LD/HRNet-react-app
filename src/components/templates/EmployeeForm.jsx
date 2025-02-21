@@ -13,7 +13,7 @@ const EmployeeForm = () => {
         lastName: '',
         birthDate: '',
         startDate: '',
-        adress: { street: '', city: '', state: 'Alabama', zip:'' },
+        adress: { street: '', city: '', state: '', zip:'' },
         departement: 'Sales'
     })
 

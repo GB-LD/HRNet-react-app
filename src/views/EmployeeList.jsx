@@ -10,7 +10,7 @@ const EmployeeList = () => {
       <ul>
         {employeesList.map((employee) => (
           <li key={employee.id}>
-            {employee.firstName} {employee.lastName}
+            {employee.firstName} {employee.lastName} - ID: {employee.id}
           </li>
         ))}
       </ul>

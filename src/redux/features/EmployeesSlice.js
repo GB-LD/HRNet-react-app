@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, nanoid } from "@reduxjs/toolkit";
 
 const employeeSlice = createSlice({
     name: "employee",
@@ -7,8 +7,11 @@ const employeeSlice = createSlice({
     },
     reducers: {
         addEmployee(state, action) {
-            console.log("addEmployee")
-            state.employeesList.push(action.payload);
+            const newEmployee = {
+                id: nanoid(),
+                ...action.payload
+            }
+            state.employeesList.push(newEmployee);
         },
         removeEmployee(state, action) {
             state.employeesList = state.employeesList.filter(employee => employee.id !== action.payload);

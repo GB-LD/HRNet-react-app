@@ -9,7 +9,7 @@ import CustomInputDate from "../atoms/InputDate"
 import { format } from "date-fns";
 
 
-const EmployeeForm = () => {
+const EmployeeForm = ({hanleFormSubmit}) => {
     const dispatch = useDispatch()
 
     const { successMessage, errorMessage } = useSelector(state => state.employee)
@@ -44,12 +44,13 @@ const EmployeeForm = () => {
 
     const departements = ["Sales", "HR", "Engineering", "Marketing"]
 
-    const hanleFormSubmit = (e) => {
+    const handleSubmit = (e) => {
         e.preventDefault()
         validateForm()
         if (validateForm()) {
             dispatch(addEmployee(form))
             setErrors({})
+            hanleFormSubmit()
         }
     }
 
@@ -67,15 +68,13 @@ const EmployeeForm = () => {
                         departement: ''
                     })
                 }
-            }, 3000)
+            }, 5000)
             return () => {clearTimeout(timer)}
         }
     }, [successMessage, errorMessage, dispatch])
 
   return (
     <>
-        {successMessage && <p style={{ color: "green" }}>{successMessage}</p>}
-        {errorMessage && <p style={{ color: "red" }}>{errorMessage}</p>}
         <form className="mt-8 mb-2 w-80 max-w-screen-lg sm:w-96 flex flex-col gap-6">
             <CustomInput
                 label="First Name"
@@ -125,7 +124,7 @@ const EmployeeForm = () => {
             />
             <CustomButton
                 text='Save'
-                onClick={hanleFormSubmit}
+                onClick={handleSubmit}
             />
         </form>
     </>

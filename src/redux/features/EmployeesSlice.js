@@ -16,12 +16,12 @@ const employeeSlice = createSlice({
                     employee.birthDate === action.payload.birthDate
             )
             if (isDuplicated ) {
-                state.errorMessage = "Cet employé existe déjà !"
+                state.errorMessage = "This employee already exists!"
                 state.successMessage = null
             } else {
                 const newEmployee = { id: nanoid(), ...action.payload}
                 state.employeesList.push(newEmployee)
-                state.successMessage = "Employé ajouté avec succès !";
+                state.successMessage = "Employee added successfully!";
                 state.errorMessage = null;
             }
         },
